@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Scraping Results</title>
+</head>
+<body>
+  <h1>Web Scraping Results</h1>
+  <form action="/scrape" method="post">
+    <label for="input">Enter Input:</label>
+    <input type="text" id="input" name="input" required>
+    <button type="submit">Scrape</button>
+  </form>
+
+  <% if (results) { %>
+    <table border="1">
+      <tr>
+        <th>Roll Number</th>
+        <th>Name</th>
+        <th>GPA</th>
+        <th>CGPA</th>
+        <th>URL</th>
+      </tr>
+      <% results.forEach(result => { %>
+        <tr>
+          <td><%= result["Roll Number"] %></td>
+          <td><%= result["Name"] %></td>
+          <td><%= result["GPA"] %></td>
+          <td><%= result["CGPA"] %></td>
+          <td><%= result["URL"] %></td>
+        </tr>
+      <% }); %>
+    </table>
+  <% } else if (error) { %>
+    <p style="color: red;"><%= error %></p>
+  <% } %>
+</body>
+</html>
